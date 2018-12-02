@@ -1,10 +1,10 @@
 ## Files
-src/* - Flask app source code.
-.travis.yml - Travis CI configuration.
-Makefile - commands for deploying and publishing docker container.
-Dockerfile - Docker image definition, will be used by the Jenkinsfile for the Docker image build.
-Jenkinsfile - Jenkins pipeline, build a new Docker image, using the Dockerfile in the repository.
-docker-compose.yml - spin up Docker container.
+  - src/* - Flask app source code, implementing a RESTful Web API with Python.
+  - .travis.yml - Travis CI configuration.
+  - Makefile - commands for deploying and publishing docker container.
+  - Dockerfile - Docker image definition, will be used by the Jenkinsfile for the Docker image build.
+  - Jenkinsfile - Jenkins pipeline, build a new Docker image, using the Dockerfile in the repository.
+  - docker-compose.yml - spin up Docker container.
 
 ## Installation
 Clone this repo
