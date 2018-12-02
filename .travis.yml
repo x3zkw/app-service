@@ -1,0 +1,25 @@
+sudo: required
+
+language: python
+
+python:
+  - '3.6'
+
+services:
+  - docker
+
+env:
+  - DOCKER_REPO_SLUG=x3zkw/app-service
+
+script:
+  # build latest image always
+  - docker build -t $DOCKER_REPO_SLUG:latest .
+  # build the image for current branch
+  - if [[ $TRAVIS_TAG = $TRAVIS_BRANCH ]]; then docker build -t $DOCKER_REPO_SLUG:$TRAVIS_TAG . ; else true ; fi
+
+after_success:
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  # push to latest if master branch
+  - if [[ $TRAVIS_BRANCH = master ]]; then docker push $DOCKER_REPO_SLUG:latest; else true; fi
+  # push tag as well
+  - if [[ $TRAVIS_TAG = $TRAVIS_BRANCH ]]; then docker push $DOCKER_REPO_SLUG:$TRAVIS_TAG; else true ; fi
